@@ -62,5 +62,22 @@ class RestaurantServiceTest {
         service.addRestaurant("Pumpkin Tales","Chennai",LocalTime.parse("12:00:00"),LocalTime.parse("23:00:00"));
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
+
+    @Test
+    public void with_valid_items_list_should_return_integer_value_of_total_ordeer_value(){
+        Item item1 = new Item("Wadapav", 10);
+        Item item2 = new Item("Roti", 15);
+        Item item3 = new Item("Paneer Masala", 150);
+        String[] orderItems = {item1.toString(), item2.toString(), item3.toString()};
+        int currentOrderValue = service.calculateOrderValue(orderItems);
+        assertEquals(175, currentOrderValue );
+    }
+
+    @Test
+    public void with_empty_items_list_should_return_zero_as_total_ordeer_value(){
+        String[] orderItems = {};
+        int currentOrderValue = service.calculateOrderValue(orderItems);
+        assertEquals(0, currentOrderValue );
+    }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
