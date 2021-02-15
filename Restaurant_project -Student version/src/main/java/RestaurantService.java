@@ -39,5 +39,15 @@ public class RestaurantService {
         return restaurants;
     }
 
+    public int calculateOrderValue(String[] items) {
+        int currentOrderValue = 0, currentItemCost ;
 
+        for(String item : items){
+            String[] currentItems = item.split(":", 2);
+            currentItemCost = Integer.parseInt(currentItems[1].substring(0, currentItems[1].length()-1));
+            currentOrderValue += currentItemCost;
+        }
+
+        return currentOrderValue;
+    }
 }
